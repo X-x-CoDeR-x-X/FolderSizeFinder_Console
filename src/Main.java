@@ -12,7 +12,7 @@ public class Main {
         String folderPath = "d:/coding/";
         File file = new File(folderPath);
         Long startTime = System.currentTimeMillis();
-        System.out.println(getFolderSize(file));
+        System.out.println(getHumanReadableSize(getFolderSize(file)));
         long endTime = System.currentTimeMillis();
         System.out.println("Time taken: " + (endTime - startTime) + "ms");
 
