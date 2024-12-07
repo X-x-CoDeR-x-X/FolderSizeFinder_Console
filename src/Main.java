@@ -1,17 +1,36 @@
 import java.io.File;
 import java.util.Scanner;
+import java.util.concurrent.ForkJoinPool;
 
 public class Main {
     private static String[] sizeNames =
             {"b", "kb", "Mb", "Gb"};
 
+
     public static void main(String[] args) {
-        while (true) {
-            System.out.println("Введите путь к папке или файлу:");
-            String path = new Scanner(System.in).nextLine();
-            File file = new File(path);
-            getFolderSize(file);
-        }
+
+        String folderPath = "d:/coding/";
+        File file = new File(folderPath);
+        Long startTime = System.currentTimeMillis();
+        System.out.println(getFolderSize(file));
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken: " + (endTime - startTime) + "ms");
+
+//        Long startTime = System.currentTimeMillis();
+//        FolderSizeCalculator calculator = new FolderSizeCalculator(file);
+//        ForkJoinPool pool = new ForkJoinPool();
+//        long size = pool.invoke(calculator);
+//        System.out.println(size);
+//        long endTime = System.currentTimeMillis();
+//        System.out.println("Time taken: " + (endTime - startTime) + "ms");
+
+
+//        while (true) {
+//            System.out.println("Введите путь к папке или файлу:");
+//            String path = new Scanner(System.in).nextLine();
+//            File file = new File(path);
+//            getFolderSize(file);
+//        }
     }
 
     public static Long getFolderSize(File path) {
