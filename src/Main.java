@@ -3,18 +3,20 @@ import java.util.concurrent.ForkJoinPool;
 
 public class Main {
     public static void main(String[] args) {
+        long sizeLimit = 50*1024*1024;
+        String folderPath = "D:/java";
 
-        String folderPath = "D:/10tons";
         File file = new File(folderPath);
         Node root = new Node(file);
 
-        long fstartTime = System.currentTimeMillis();
+
+        long startTime = System.currentTimeMillis();
         FolderSizeCalculator calculator = new FolderSizeCalculator(root);
         ForkJoinPool pool = new ForkJoinPool();
         pool.invoke(calculator);
         System.out.println(root);
 
-        long fendTime = System.currentTimeMillis();
-        System.out.println("ForkJoin time taken: " + (fendTime - fstartTime) + "ms");
+        long endTime = System.currentTimeMillis();
+        System.out.println("ForkJoin time taken: " + (endTime - startTime) + "ms");
     }
 }
