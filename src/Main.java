@@ -7,7 +7,7 @@ public class Main {
         String folderPath = "D:/java";
 
         File file = new File(folderPath);
-        Node root = new Node(file);
+        Node root = new Node(file, sizeLimit);
 
 
         long startTime = System.currentTimeMillis();

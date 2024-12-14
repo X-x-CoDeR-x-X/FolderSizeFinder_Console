@@ -2,16 +2,16 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Node {
-    private long sizeLimit =50*1024*1024;
+    private long limit;
     private File folder;
     private ArrayList<Node> children;
     private long size;
     private int level;
 
-    public Node(File folder) {
+    public Node(File folder, long limit) {
         this.folder = folder;
         children = new ArrayList<>();
-//        this.sizeLimit = sizeLimit;
+        this.limit = limit;
     }
 
     public File getFolder() {
@@ -39,24 +39,26 @@ public class Node {
         this.level = level;
     }
 
-    public long getSizeLimit() {
-        return sizeLimit;
+    public long getLimit() {
+        return limit;
     }
 
-    public void setSizeLimit(long sizeLimit) {
-        this.sizeLimit = sizeLimit;
+    public void setLimit(long sizeLimit) {
+        this.limit = limit;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         String readableSize = SizeCalculator.getHumanReadableSize(getSize());
-        if (size > getSizeLimit()) {
             builder.append(folder.getName() + " - " + readableSize + "\n");
             for (Node child : children) {
+                if(child.getSize()< limit) {
+                    continue;
+                }
                 builder.append("  ".repeat(level + 1) + child.toString());
             }
-        }
+
         return builder.toString();
     }
 }
