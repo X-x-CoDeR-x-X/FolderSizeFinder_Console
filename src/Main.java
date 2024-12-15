@@ -3,8 +3,9 @@ import java.util.concurrent.ForkJoinPool;
 
 public class Main {
     public static void main(String[] args) {
-        long sizeLimit = 50*1024*1024;
-        String folderPath = "D:/java";
+        ParametersBag bag = new ParametersBag(args);
+        long sizeLimit = bag.getLimit();
+        String folderPath = bag.getPath();
 
         File file = new File(folderPath);
         Node root = new Node(file, sizeLimit);
